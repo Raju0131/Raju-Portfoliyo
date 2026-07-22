@@ -88,14 +88,20 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
           <div
-            className="relative mt-12 aspect-[16/8.5] overflow-hidden rounded-[28px] shadow-[0_34px_80px_rgba(52,55,92,.14)] [animation:fadeUp_.8s_ease_.2s_both]"
+            className={`relative mt-12 overflow-hidden rounded-[28px] shadow-[0_34px_80px_rgba(52,55,92,.14)] [animation:fadeUp_.8s_ease_.2s_both] ${
+              p.imagesNatural ? "" : "aspect-[16/8.5]"
+            }`}
             style={{ background: p.tint }}
           >
             {p.heroImg ? (
               <img
                 src={p.heroImg}
                 alt={`${p.title} screenshot`}
-                className="absolute inset-0 block h-full w-full object-cover object-top"
+                className={
+                  p.imagesNatural
+                    ? "block h-auto w-full"
+                    : "absolute inset-0 block h-full w-full object-cover object-top"
+                }
               />
             ) : (
               <Placeholder text={`${p.title} — screenshot coming soon`} />
@@ -111,6 +117,12 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               </a>
             )}
           </div>
+          {p.heroCaption && (
+            <p className="mt-4 flex max-w-[72ch] items-baseline gap-2.5 text-[14px] leading-[1.65] text-muted [animation:fadeUp_.8s_ease_.3s_both]">
+              <span className="text-accent">✦</span>
+              <span>{p.heroCaption}</span>
+            </p>
+          )}
         </div>
 
         <div data-reveal="1" className="my-16">
@@ -205,39 +217,87 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
 
-          <div
-            data-reveal="1"
-            className="mt-[72px] grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[22px]"
-          >
-            <div
-              className="aspect-[4/3] overflow-hidden rounded-[22px] transition-transform duration-[400ms] hover:-translate-y-1.5"
-              style={{ background: p.tint }}
-            >
-              {p.img2 ? (
-                <img
-                  src={p.img2}
-                  alt={`${p.title} screenshot 2`}
-                  className="block h-full w-full object-cover object-top"
-                />
-              ) : (
-                <Placeholder text="Screenshot coming soon" />
+          {p.imagesNatural ? (
+            <div className="mt-[72px] flex flex-col gap-[clamp(32px,5vw,56px)]">
+              {p.img2 && (
+                <figure data-reveal="1" className="m-0">
+                  <div
+                    className="overflow-hidden rounded-[22px]"
+                    style={{ background: p.tint }}
+                  >
+                    <img
+                      src={p.img2}
+                      alt={`${p.title} screenshot — colour switching`}
+                      className="block h-auto w-full"
+                    />
+                  </div>
+                  {p.img2Caption && (
+                    <figcaption className="mt-4 flex max-w-[72ch] items-baseline gap-2.5 text-[14px] leading-[1.65] text-muted">
+                      <span className="text-accent">✦</span>
+                      <span>{p.img2Caption}</span>
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+              {p.img3 && (
+                <figure data-reveal="1" className="m-0">
+                  <div
+                    className="relative mx-auto w-full max-w-[420px] overflow-hidden rounded-[28px]"
+                    style={{ background: p.tint }}
+                  >
+                    <span className="absolute left-4 top-4 z-[2] rounded-full bg-ink px-3 py-1.5 font-mono text-[10px] uppercase tracking-[.16em] text-paper">
+                      Mobile view
+                    </span>
+                    <img
+                      src={p.img3}
+                      alt={`${p.title} screenshot — mobile`}
+                      className="block h-auto w-full"
+                    />
+                  </div>
+                  {p.img3Caption && (
+                    <figcaption className="mx-auto mt-4 flex max-w-[48ch] items-baseline justify-center gap-2.5 text-center text-[14px] leading-[1.65] text-muted">
+                      <span className="text-accent">✦</span>
+                      <span>{p.img3Caption}</span>
+                    </figcaption>
+                  )}
+                </figure>
               )}
             </div>
+          ) : (
             <div
-              className="aspect-[4/3] overflow-hidden rounded-[22px] transition-transform duration-[400ms] hover:-translate-y-1.5"
-              style={{ background: p.tint }}
+              data-reveal="1"
+              className="mt-[72px] grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[22px]"
             >
-              {p.img3 ? (
-                <img
-                  src={p.img3}
-                  alt={`${p.title} screenshot 3`}
-                  className="block h-full w-full object-cover object-top"
-                />
-              ) : (
-                <Placeholder text="Screenshot coming soon" />
-              )}
+              <div
+                className="aspect-[4/3] overflow-hidden rounded-[22px] transition-transform duration-[400ms] hover:-translate-y-1.5"
+                style={{ background: p.tint }}
+              >
+                {p.img2 ? (
+                  <img
+                    src={p.img2}
+                    alt={`${p.title} screenshot 2`}
+                    className="block h-full w-full object-cover object-top"
+                  />
+                ) : (
+                  <Placeholder text="Screenshot coming soon" />
+                )}
+              </div>
+              <div
+                className="aspect-[4/3] overflow-hidden rounded-[22px] transition-transform duration-[400ms] hover:-translate-y-1.5"
+                style={{ background: p.tint }}
+              >
+                {p.img3 ? (
+                  <img
+                    src={p.img3}
+                    alt={`${p.title} screenshot 3`}
+                    className="block h-full w-full object-cover object-top"
+                  />
+                ) : (
+                  <Placeholder text="Screenshot coming soon" />
+                )}
+              </div>
             </div>
-          </div>
+          )}
 
           <div
             data-reveal="1"

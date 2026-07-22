@@ -21,6 +21,11 @@ export type Project = {
   heroImg?: string;
   img2?: string;
   img3?: string;
+  /* Case-study image treatment — scoped to projects that opt in. */
+  imagesNatural?: boolean;
+  heroCaption?: string;
+  img2Caption?: string;
+  img3Caption?: string;
 };
 
 export const projects: Record<string, Project> = {
@@ -29,7 +34,7 @@ export const projects: Record<string, Project> = {
     title: "Tech House",
     tags: ["Full-stack", "E-commerce"],
     tint: "#e7e4f9",
-    index: "01",
+    index: "04",
     intro:
       "A complete e-commerce platform built end-to-end — from database schema to checkout flow.",
     role: "Full-stack Developer",
@@ -48,8 +53,8 @@ export const projects: Record<string, Project> = {
       { t: "Performance first", d: "Server rendering + smart caching — product pages load instantly." },
     ],
     live: null,
-    next: "cinenest",
-    nextTitle: "Cinenest",
+    next: "3d",
+    nextTitle: "Sneaker Lab",
   },
   cinenest: {
     slug: "cinenest",
@@ -92,7 +97,7 @@ export const projects: Record<string, Project> = {
     role: "Design & Development",
     stack: "Design · Motion · Web",
     year: "2025",
-    status: "Evolving",
+    status: "Live",
     marquee: "Raju ✦ Identity ✦ Logotype ✦ Motion language ✦ This website ✦ ",
     body1:
       "Building your own brand is the hardest brief — you're the client who's never satisfied. I wanted something playful but credible: a hand-drawn logotype, a soft lavender palette, and type with personality that doesn't shout.",
@@ -104,36 +109,49 @@ export const projects: Record<string, Project> = {
       { t: "Music easter egg", d: "A spinning disc that plays Amar Dehokhan. Because why not." },
       { t: "Fully hand-built", d: "No templates, no page builders — every pixel is intentional." },
     ],
-    live: null,
-    next: "3d",
-    nextTitle: "3D",
+    live: "https://rifatsarkerraju.com",
+    next: "techhouse",
+    nextTitle: "Tech House",
+    heroImg: "/assets/raju-home.png",
+    img2: "/assets/raju-work.png",
+    img3: "/assets/raju-project.png",
   },
   "3d": {
     slug: "3d",
-    title: "3D",
+    title: "Sneaker Lab",
     tags: ["3D", "WebGL"],
     tint: "#e7e4f9",
-    index: "04",
+    index: "01",
     intro:
-      "Exploring the third dimension on the web — interactive 3D scenes and objects that run right in the browser.",
+      "A real-time 3D sneaker configurator — pick your colourway and material, watch it recolour live, and export the result. Built to run smoothly right in the browser.",
     role: "Developer",
-    stack: "Three.js · WebGL",
+    stack: "Next.js · R3F · Zustand",
     year: "2026",
-    status: "In progress",
-    marquee: "3D ✦ Three.js ✦ WebGL ✦ Interactive scenes ✦ ",
+    status: "Live",
+    marquee: "Sneaker Lab ✦ react-three-fiber ✦ Real-time colour ✦ WebGL ✦ ",
     body1:
-      "Flat interfaces are solved problems — the browser can do so much more. This is my playground for real-time 3D: lighting, materials and camera work, all running at 60fps on the open web.",
+      "The source model came as baked-texture meshes with no separable parts, so standard per-material tinting was impossible — recolouring one panel meant recolouring the whole shoe, stitching and all.",
     body2:
-      "Interactive 3D scenes built with Three.js — modeled objects, studio lighting, orbit controls and smooth scroll-driven cameras. More experiments landing soon.",
+      "I built a luminance-preserving tint pipeline that recolours the shoe while keeping the fabric weave and stitching intact, then compressed the model from 16.7MB down to 2.4MB with Draco and mesh simplification so it loads fast, even on mobile.",
     features: [
-      { t: "Real-time rendering", d: "Full 3D scenes running natively in the browser — no plugins." },
-      { t: "Interactive cameras", d: "Orbit, zoom and scroll-driven camera movement." },
-      { t: "Studio lighting", d: "Carefully tuned lights, shadows and materials." },
-      { t: "Work in progress", d: "New experiments being added as I learn." },
+      { t: "Real-time colour switching", d: "Swap colourways instantly — the tint pipeline recolours the shoe live, with no reload." },
+      { t: "Material presets with live pricing", d: "Leather, suede and canvas presets that update the price the moment you pick one." },
+      { t: "Canvas screenshot export", d: "Export your custom sneaker as an image straight from the WebGL canvas." },
+      { t: "Mobile-first, touch-safe controls", d: "Orbit, zoom and rotate built for touch — they never fight the page scroll." },
     ],
-    live: null,
-    next: "techhouse",
-    nextTitle: "Tech House",
+    live: "https://3d-bay-ten.vercel.app",
+    next: "cinenest",
+    nextTitle: "Cinenest",
+    heroImg: "/assets/sneaker-navy.png",
+    img2: "/assets/sneaker-green.png",
+    img3: "/assets/sneaker-orange.png",
+    imagesNatural: true,
+    heroCaption:
+      "The Sneaker Lab configurator — six colourways, three materials and live pricing, all rendered in real time in the browser.",
+    img2Caption:
+      "Real-time colour switching: every swatch recolours the shoe live, while the fabric weave and stitching stay intact.",
+    img3Caption:
+      "Mobile-first — the full configurator works on touch, with orbit controls that never hijack the page scroll.",
   },
 };
 

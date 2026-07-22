@@ -186,31 +186,38 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[22px]">
           <Link
-            href="/work/techhouse"
+            href="/work/3d"
             data-reveal="1"
             className="col-span-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] items-center gap-[26px] rounded-[26px] bg-lav p-[clamp(24px,3vw,40px)] [transition:transform_.4s_cubic-bezier(.25,.1,.25,1),box-shadow_.4s_ease] hover:-translate-y-1.5 hover:shadow-[0_26px_60px_rgba(52,55,92,.16)]"
           >
             <span className="flex flex-col items-start gap-4">
               <span className="flex flex-wrap gap-2">
-                <span className={workChip}>Full-stack</span>
-                <span className={workChip}>E-commerce</span>
+                <span className={workChip}>3D</span>
+                <span className={workChip}>WebGL</span>
                 <span className={workChip}>2026</span>
               </span>
-              <span className="font-display text-[clamp(30px,3.6vw,48px)] font-extrabold leading-none tracking-[-0.02em] text-ink">
-                Tech House
+              <span className="flex flex-wrap items-center gap-3">
+                <span className="font-display text-[clamp(30px,3.6vw,48px)] font-extrabold leading-none tracking-[-0.02em] text-ink">
+                  Sneaker Lab
+                </span>
+                <span className="whitespace-nowrap rounded-full bg-mint px-[13px] py-[6px] font-mono text-[10px] tracking-[.1em] text-ink">
+                  ● Live
+                </span>
               </span>
               <span className="max-w-[42ch] text-[15px] leading-[1.7]">
-                Complete e-commerce platform — auth, cart, payments and an admin dashboard on
-                Next.js + PostgreSQL.
+                Real-time 3D sneaker configurator — pick a colourway and material, recolour it
+                live and export the result.
               </span>
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-ink text-[19px] text-white [transition:background_.3s_ease,transform_.3s_ease] hover:rotate-45 hover:bg-accent">
                 ↗
               </span>
             </span>
             <span className="block aspect-[16/11] overflow-hidden rounded-2xl bg-white/50">
-              <span className="box-border flex h-full w-full items-center justify-center p-5 text-center font-mono text-[11px] uppercase tracking-[.14em] text-muted opacity-60">
-                Tech House — screenshot coming soon
-              </span>
+              <img
+                src="/assets/sneaker-navy.png"
+                alt="Sneaker Lab configurator"
+                className="block h-full w-full object-cover object-center"
+              />
             </span>
           </Link>
           <Link
@@ -258,9 +265,11 @@ export default function Home() {
               </span>
             </span>
             <span className="block aspect-[16/11] overflow-hidden rounded-2xl bg-white/50">
-              <span className="box-border flex h-full w-full items-center justify-center p-5 text-center font-mono text-[11px] uppercase tracking-[.14em] text-muted opacity-60">
-                Raju identity — visual coming soon
-              </span>
+              <img
+                src="/assets/raju-home.png"
+                alt="Raju portfolio homepage"
+                className="block h-full w-full object-cover object-top"
+              />
             </span>
             <span className="flex flex-col gap-2">
               <span className="font-display text-[clamp(26px,2.8vw,36px)] font-extrabold leading-none tracking-[-0.02em] text-ink">

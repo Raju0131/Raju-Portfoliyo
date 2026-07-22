@@ -63,16 +63,23 @@ export default function WorkPage() {
         </div>
 
         <div className="flex flex-col [animation:fadeUp_.7s_ease_.25s_both]">
-          <Link href="/work/techhouse" className={`${rowBase} hover:bg-lav`}>
+          <Link href="/work/3d" className={`${rowBase} hover:bg-lav`}>
             <span className="font-mono text-[12px] tracking-[.18em] text-accent">01</span>
-            <span className="flex h-[72px] w-[104px] shrink-0 items-center justify-center rounded-xl bg-lav font-hand text-[26px] text-ink">
-              Th
+            <span className="h-[72px] w-[104px] shrink-0 overflow-hidden rounded-xl bg-lav">
+              <img
+                src="/assets/sneaker-navy.png"
+                alt=""
+                className="block h-full w-full object-cover object-center"
+              />
             </span>
             <span className={rowText}>
-              <span className={rowTitle}>Tech House</span>
-              <span className="text-[14px]">
-                Full-stack e-commerce — Next.js · TypeScript · PostgreSQL
+              <span className="flex flex-wrap items-center gap-3">
+                <span className={rowTitle}>Sneaker Lab</span>
+                <span className="whitespace-nowrap rounded-full bg-mint px-[13px] py-[5px] font-mono text-[10px] tracking-[.1em] text-ink">
+                  ● Live
+                </span>
               </span>
+              <span className="text-[14px]">Real-time 3D sneaker configurator — react-three-fiber · WebGL</span>
             </span>
             <span className={rowRight}>
               <span className={rowYear}>2026</span>
@@ -104,11 +111,20 @@ export default function WorkPage() {
           </Link>
           <Link href="/work/branding" className={`${rowBase} hover:bg-peach`}>
             <span className="font-mono text-[12px] tracking-[.18em] text-accent">03</span>
-            <span className="flex h-[72px] w-[104px] shrink-0 rotate-[-2deg] items-center justify-center rounded-xl bg-peach font-hand text-[26px] text-ink">
-              Raju
+            <span className="h-[72px] w-[104px] shrink-0 overflow-hidden rounded-xl bg-peach">
+              <img
+                src="/assets/raju-home.png"
+                alt=""
+                className="block h-full w-full object-cover object-top"
+              />
             </span>
             <span className={rowText}>
-              <span className={rowTitle}>Raju — Identity</span>
+              <span className="flex flex-wrap items-center gap-3">
+                <span className={rowTitle}>Raju — Identity</span>
+                <span className="whitespace-nowrap rounded-full bg-peach px-[13px] py-[5px] font-mono text-[10px] tracking-[.1em] text-ink">
+                  ● Live
+                </span>
+              </span>
               <span className="text-[14px]">
                 Personal brand &amp; portfolio — design, motion, micro-interactions
               </span>
@@ -118,19 +134,16 @@ export default function WorkPage() {
               <span className={rowArrow}>↗</span>
             </span>
           </Link>
-          <Link href="/work/3d" className={`${rowBase} border-b hover:bg-lav`}>
+          <Link href="/work/techhouse" className={`${rowBase} border-b hover:bg-lav`}>
             <span className="font-mono text-[12px] tracking-[.18em] text-accent">04</span>
-            <span className="flex h-[72px] w-[104px] shrink-0 items-center justify-center rounded-xl bg-ink font-display text-[22px] font-extrabold text-paper">
-              3D
+            <span className="flex h-[72px] w-[104px] shrink-0 items-center justify-center rounded-xl bg-lav font-hand text-[26px] text-ink">
+              Th
             </span>
             <span className={rowText}>
-              <span className="flex flex-wrap items-center gap-3">
-                <span className={rowTitle}>3D</span>
-                <span className="whitespace-nowrap rounded-full bg-lav px-[13px] py-[5px] font-mono text-[10px] tracking-[.1em] text-ink">
-                  In progress
-                </span>
+              <span className={rowTitle}>Tech House</span>
+              <span className="text-[14px]">
+                Full-stack e-commerce — Next.js · TypeScript · PostgreSQL
               </span>
-              <span className="text-[14px]">Interactive 3D on the web — Three.js · WebGL</span>
             </span>
             <span className={rowRight}>
               <span className={rowYear}>2026</span>
