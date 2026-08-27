@@ -16,7 +16,37 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const p = projects[params.slug];
   if (!p) return {};
-  return { title: `${p.title} — Raju`, description: p.intro };
+
+  const pageUrl = `https://rifatsarkerraju.com/work/${p.slug}`;
+  const imageUrl = `https://rifatsarkerraju.com/og/${p.slug}`;
+  const title = `${p.title} — Case Study`;
+
+  return {
+    title,
+    description: p.intro,
+    openGraph: {
+      type: "website",
+      url: pageUrl,
+      siteName: "Raju — Full-Stack Web Developer",
+      title,
+      description: p.intro,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${p.title} project by Rifat Sarker Raju`,
+        },
+      ],
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: p.intro,
+      images: [imageUrl],
+    },
+  };
 }
 
 const metaTile =

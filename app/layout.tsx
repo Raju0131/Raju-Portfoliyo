@@ -35,9 +35,37 @@ const boldmatte = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Raju — Full-Stack Web Developer",
+  metadataBase: new URL("https://rifatsarkerraju.com"),
+  title: {
+    default: "Raju — Full-Stack Web Developer",
+    template: "%s | Raju",
+  },
   description:
     "Rifat Sarker (Raju) — full-stack web developer from Rajshahi, Bangladesh. Next.js, TypeScript & PostgreSQL under the hood, micro-interactions on top.",
+  openGraph: {
+    type: "website",
+    url: "https://rifatsarkerraju.com",
+    siteName: "Raju — Full-Stack Web Developer",
+    title: "Raju — Full-Stack Web Developer",
+    description:
+      "Rifat Sarker (Raju) — full-stack web developer from Rajshahi, Bangladesh. Next.js, TypeScript & PostgreSQL under the hood, micro-interactions on top.",
+    images: [
+      {
+        url: "https://rifatsarkerraju.com/og/home",
+        width: 1200,
+        height: 630,
+        alt: "Rifat Sarker Raju — Full-Stack Web Developer",
+      },
+    ],
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Raju — Full-Stack Web Developer",
+    description:
+      "Rifat Sarker (Raju) — full-stack web developer from Rajshahi, Bangladesh. Next.js, TypeScript & PostgreSQL under the hood, micro-interactions on top.",
+    images: ["https://rifatsarkerraju.com/og/home"],
+  },
 };
 
 export default function RootLayout({
