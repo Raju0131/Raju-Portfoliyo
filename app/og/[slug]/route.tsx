@@ -74,7 +74,6 @@ export async function GET(
               }}
             >
               {project.title}
-              <span style={{ color: "#655cf6", marginLeft: 18 }}>✦</span>
             </div>
             <div
               style={{
