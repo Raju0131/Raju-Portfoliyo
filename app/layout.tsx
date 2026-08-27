@@ -51,7 +51,7 @@ export const metadata: Metadata = {
       "Rifat Sarker (Raju) — full-stack web developer from Rajshahi, Bangladesh. Next.js, TypeScript & PostgreSQL under the hood, micro-interactions on top.",
     images: [
       {
-        url: "https://rifatsarkerraju.com/og/home",
+        url: "https://rifatsarkerraju.com/og/home?v=2",
         width: 1200,
         height: 630,
         alt: "Rifat Sarker Raju — Full-Stack Web Developer",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     title: "Raju — Full-Stack Web Developer",
     description:
       "Rifat Sarker (Raju) — full-stack web developer from Rajshahi, Bangladesh. Next.js, TypeScript & PostgreSQL under the hood, micro-interactions on top.",
-    images: ["https://rifatsarkerraju.com/og/home"],
+    images: ["https://rifatsarkerraju.com/og/home?v=2"],
   },
 };
 

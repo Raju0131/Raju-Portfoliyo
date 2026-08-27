@@ -18,7 +18,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   if (!p) return {};
 
   const pageUrl = `https://rifatsarkerraju.com/work/${p.slug}`;
-  const imageUrl = `https://rifatsarkerraju.com/og/${p.slug}`;
+  const imageUrl = `https://rifatsarkerraju.com/og/${p.slug}?v=2`;
   const title = `${p.title} — Case Study`;
 
   return {
