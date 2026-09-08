@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import RevealFx from "@/components/RevealFx";
 import ScrollProgress from "@/components/ScrollProgress";
-import { projects, projectSlugs } from "@/lib/projects";
-
-/* eslint-disable @next/next/no-img-element */
+import { imageDims, projects, projectSlugs } from "@/lib/projects";
 
 export const dynamicParams = false;
 
@@ -53,6 +52,36 @@ const metaTile =
   "flex items-baseline justify-between gap-4 bg-card px-7 py-6";
 const metaLabel = "font-mono text-[10px] uppercase tracking-[.22em] opacity-55";
 const metaValue = "text-right text-[15px] font-semibold text-ink";
+
+function Shot({
+  src,
+  alt,
+  sizes,
+  className,
+  priority,
+}: {
+  src: string;
+  alt: string;
+  sizes: string;
+  className: string;
+  priority?: boolean;
+}) {
+  // Every screenshot in the project data is measured in imageDims; the fallback
+  // just keeps an unmeasured future asset from throwing.
+  const d = imageDims[src] ?? { w: 1600, h: 900 };
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={d.w}
+      height={d.h}
+      sizes={sizes}
+      quality={85}
+      priority={priority}
+      className={className}
+    />
+  );
+}
 
 function Placeholder({ text }: { text: string }) {
   return (
@@ -124,9 +153,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             style={{ background: p.tint }}
           >
             {p.heroImg ? (
-              <img
+              <Shot
                 src={p.heroImg}
                 alt={`${p.title} screenshot`}
+                sizes="(max-width: 1200px) 92vw, 1072px"
+                priority
                 className={
                   p.imagesNatural
                     ? "block h-auto w-full"
@@ -255,9 +286,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     className="overflow-hidden rounded-[22px]"
                     style={{ background: p.tint }}
                   >
-                    <img
+                    <Shot
                       src={p.img2}
                       alt={`${p.title} screenshot — colour switching`}
+                      sizes="(max-width: 1200px) 92vw, 1072px"
                       className="block h-auto w-full"
                     />
                   </div>
@@ -278,9 +310,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     <span className="absolute left-4 top-4 z-[2] rounded-full bg-ink px-3 py-1.5 font-mono text-[10px] uppercase tracking-[.16em] text-paper">
                       Mobile view
                     </span>
-                    <img
+                    <Shot
                       src={p.img3}
                       alt={`${p.title} screenshot — mobile`}
+                      sizes="(max-width: 460px) 92vw, 420px"
                       className="block h-auto w-full"
                     />
                   </div>
@@ -303,9 +336,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 style={{ background: p.tint }}
               >
                 {p.img2 ? (
-                  <img
+                  <Shot
                     src={p.img2}
                     alt={`${p.title} screenshot 2`}
+                    sizes="(max-width: 700px) 92vw, 530px"
                     className="block h-full w-full object-cover object-top"
                   />
                 ) : (
@@ -317,9 +351,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 style={{ background: p.tint }}
               >
                 {p.img3 ? (
-                  <img
+                  <Shot
                     src={p.img3}
                     alt={`${p.title} screenshot 3`}
+                    sizes="(max-width: 700px) 92vw, 530px"
                     className="block h-full w-full object-cover object-top"
                   />
                 ) : (

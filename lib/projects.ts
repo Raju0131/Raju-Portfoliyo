@@ -156,3 +156,17 @@ export const projects: Record<string, Project> = {
 };
 
 export const projectSlugs = Object.keys(projects);
+
+/* Intrinsic pixel size of every screenshot in public/assets, so the case-study
+   pages can hand next/image real dimensions without probing the file. */
+export const imageDims: Record<string, { w: number; h: number }> = {
+  "/assets/cinenest-home.png": { w: 1936, h: 941 },
+  "/assets/cinenest-detail.png": { w: 1936, h: 941 },
+  "/assets/cinenest-admin.png": { w: 1936, h: 941 },
+  "/assets/raju-home.png": { w: 1908, h: 929 },
+  "/assets/raju-work.png": { w: 1019, h: 993 },
+  "/assets/raju-project.png": { w: 1908, h: 929 },
+  "/assets/sneaker-navy.png": { w: 1920, h: 935 },
+  "/assets/sneaker-green.png": { w: 1920, h: 935 },
+  "/assets/sneaker-orange.png": { w: 470, h: 576 },
+};

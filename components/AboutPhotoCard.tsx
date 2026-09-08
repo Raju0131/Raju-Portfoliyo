@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const SOURCES = [
@@ -13,14 +14,21 @@ export default function AboutPhotoCard() {
   const [playing, setPlaying] = useState(false);
   const [missing, setMissing] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const teardownRef = useRef<(() => void) | null>(null);
   const playingRef = useRef(false);
   playingRef.current = playing;
 
-  useEffect(() => {
+  // The <audio> element is built on the first click, not on mount: constructing
+  // it up front makes the browser fetch the whole song (~10MB) before anything
+  // on the page has painted, which starves the hero image on a slow connection.
+  const ensureAudio = () => {
+    if (audioRef.current) return audioRef.current;
+
     let idx = 0;
-    const audio = new Audio(SOURCES[0]);
+    const audio = new Audio();
+    audio.preload = "none";
     audio.loop = true;
-    audioRef.current = audio;
+    audio.src = SOURCES[0];
 
     const onError = () => {
       idx++;
@@ -50,7 +58,7 @@ export default function AboutPhotoCard() {
     audio.addEventListener("loadedmetadata", onMeta);
     audio.addEventListener("timeupdate", onTime);
 
-    return () => {
+    teardownRef.current = () => {
       try {
         localStorage.setItem("raju_song_pos", String(audio.currentTime));
       } catch {}
@@ -58,14 +66,27 @@ export default function AboutPhotoCard() {
       audio.removeEventListener("error", onError);
       audio.removeEventListener("loadedmetadata", onMeta);
       audio.removeEventListener("timeupdate", onTime);
-      audioRef.current = null;
     };
-  }, []);
+
+    audioRef.current = audio;
+    return audio;
+  };
+
+  // Nothing to set up on mount — only tear down an element a click created.
+  useEffect(
+    () => () => {
+      teardownRef.current?.();
+      teardownRef.current = null;
+      audioRef.current = null;
+    },
+    []
+  );
 
   const toggleSong = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
+    const audio = ensureAudio();
     if (audio.paused) {
+      // Once the visitor has asked for the song, buffering ahead is welcome.
+      audio.preload = "auto";
       audio
         .play()
         .then(() => {
@@ -85,10 +106,13 @@ export default function AboutPhotoCard() {
     <div data-reveal="1" className="relative w-full max-w-[400px] justify-self-center">
       <div className="rotate-2 rounded-[22px] bg-card p-3.5 pb-[50px] shadow-[0_24px_60px_rgba(52,55,92,.14)] transition-transform duration-500 ease-swift hover:rotate-0 hover:scale-[1.02]">
         <div className="aspect-[4/5] overflow-hidden rounded-xl">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/assets/raju.jpg"
             alt="Rifat Sarker"
+            width={1536}
+            height={2048}
+            sizes="(max-width: 768px) 75vw, 372px"
+            quality={85}
             className="block h-full w-full object-cover"
           />
         </div>
@@ -105,10 +129,13 @@ export default function AboutPhotoCard() {
           className="relative block h-full w-full overflow-hidden rounded-full shadow-[0_14px_34px_rgba(52,55,92,.35)] [animation:spinSlow_3.5s_linear_infinite]"
           style={{ animationPlayState: playing ? "running" : "paused" }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/assets/album-art.jpg"
             alt=""
+            width={1024}
+            height={575}
+            sizes="72px"
+            quality={85}
             className="block h-full w-full object-cover"
           />
           <span className="absolute inset-0 flex items-center justify-center bg-[rgba(30,32,60,.44)]">

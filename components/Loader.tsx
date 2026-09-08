@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useState } from "react";
 
-const GREETS = ["Hello", "নমস্কার", "Bonjour", "হ্যালো", "Hola"];
+const GREETS = ["Hello", "আসসালামু আলাইকুম", "Bonjour", "হ্যালো", "Hola"];
 
 export default function Loader() {
   const [done, setDone] = useState(false);
@@ -29,8 +29,8 @@ export default function Loader() {
       try {
         sessionStorage.setItem("raju_loader_shown", "1");
       } catch {}
-    }, 1500);
-    const t2 = window.setTimeout(() => setDone(true), 2050);
+    }, 900);
+    const t2 = window.setTimeout(() => setDone(true), 1200);
     return () => {
       clearInterval(g);
       clearTimeout(t1);
@@ -41,11 +41,13 @@ export default function Loader() {
   if (done) return null;
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-[90] flex items-center justify-center bg-ink [transition:opacity_.55s_ease,transform_.55s_ease]"
+      className="pointer-events-none fixed inset-0 z-[90] flex items-center justify-center bg-ink [transition:opacity_.3s_ease,transform_.3s_ease]"
       style={{ opacity }}
     >
       <div className="flex flex-col items-center gap-[18px]">
-        <span className="font-display text-[clamp(40px,7vw,76px)] font-extrabold leading-none tracking-[-0.02em] text-paper">
+        {/* px/text-center keep the long Bengali greeting off the screen edges
+            when it has to wrap on a narrow phone. */}
+        <span className="text-balance px-6 text-center font-display text-[clamp(40px,7vw,76px)] font-extrabold leading-none tracking-[-0.02em] text-paper">
           {GREETS[idx]}
         </span>
         <span className="font-mono text-[10.5px] uppercase tracking-[.3em] text-paper/55">

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-
-/* eslint-disable @next/next/no-img-element */
 
 export const metadata: Metadata = {
   title: "Work — Raju",
@@ -66,9 +65,13 @@ export default function WorkPage() {
           <Link href="/work/3d" className={`${rowBase} hover:bg-lav`}>
             <span className="font-mono text-[12px] tracking-[.18em] text-accent">01</span>
             <span className="h-[72px] w-[104px] shrink-0 overflow-hidden rounded-xl bg-lav">
-              <img
+              <Image
                 src="/assets/sneaker-navy.png"
                 alt=""
+                width={1920}
+                height={935}
+                sizes="104px"
+                quality={85}
                 className="block h-full w-full object-cover object-center"
               />
             </span>
@@ -89,9 +92,13 @@ export default function WorkPage() {
           <Link href="/work/cinenest" className={`${rowBase} hover:bg-mint`}>
             <span className="font-mono text-[12px] tracking-[.18em] text-accent">02</span>
             <span className="h-[72px] w-[104px] shrink-0 overflow-hidden rounded-xl bg-mint">
-              <img
+              <Image
                 src="/assets/cinenest-home.png"
                 alt=""
+                width={1936}
+                height={941}
+                sizes="104px"
+                quality={85}
                 className="block h-full w-full object-cover object-top"
               />
             </span>
@@ -112,9 +119,13 @@ export default function WorkPage() {
           <Link href="/work/branding" className={`${rowBase} hover:bg-peach`}>
             <span className="font-mono text-[12px] tracking-[.18em] text-accent">03</span>
             <span className="h-[72px] w-[104px] shrink-0 overflow-hidden rounded-xl bg-peach">
-              <img
+              <Image
                 src="/assets/raju-home.png"
                 alt=""
+                width={1908}
+                height={929}
+                sizes="104px"
+                quality={85}
                 className="block h-full w-full object-cover object-top"
               />
             </span>
