@@ -37,7 +37,8 @@ export default function HomeHeader() {
           </span>
           <a
             href="/assets/rifat-sarker-cv.pdf"
-            download
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block rounded-full border-[1.5px] border-ink px-[18px] py-2 text-[13.5px] font-semibold text-ink [transition:background_.3s_ease,color_.3s_ease] hover:bg-ink hover:text-white"
           >
             CV ↓

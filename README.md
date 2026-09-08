@@ -9,7 +9,8 @@ Router + TypeScript + Tailwind CSS, with Lenis smooth scrolling.
 ```bash
 npm install
 npm run dev    # http://localhost:3000
-npm run build  # static export of all pages
+npm run build  # production build
+npm start      # serve the production build
 ```
 
 ## Pages
@@ -29,10 +30,20 @@ npm run build  # static export of all pages
 - `app/fonts/` — self-hosted fonts: Bricolage Grotesque + Instrument Sans
   (variable, latin), Space Mono 400/700, and the bundled Boldmatte logotype font
 
+## CV
+
+- The supplied `Md_Raju_Ahmed_CV.pdf` is stored at
+  `public/assets/rifat-sarker-cv.pdf`, preserving the existing public URL.
+- The header's **CV** button opens `/assets/rifat-sarker-cv.pdf` in a new tab
+  for viewing. Browser PDF settings may download the file instead.
+- The **Download CV** button in My journey downloads the same PDF as
+  `Md_Raju_Ahmed_CV.pdf`.
+- To update the CV, replace `public/assets/rifat-sarker-cv.pdf` with the new
+  PDF, keeping that filename, then rebuild and redeploy the site. No button
+  changes are needed.
+
 ## Notes from the handoff
 
-- `public/assets/rifat-sarker-cv.pdf` does not exist yet — the CV buttons are
-  wired and will work once the file is dropped in.
 - Tech House / Raju-Identity / 3D screenshots are "coming soon" placeholder
   slots by design; add images to `public/assets/` and reference them in
   `lib/projects.ts`.
