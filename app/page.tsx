@@ -392,7 +392,7 @@ export default function Home() {
               My journey <span className="text-accent">✦</span>
             </SectionHeading>
             <a
-              href="/assets/rifat-sarker-cv.pdf"
+              href="/assets/rajus-cv.pdf"
               download="Md_Raju_Ahmed_CV.pdf"
               data-magnetic="1"
               className="inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-line bg-card px-6 py-[11px] text-[14px] font-semibold text-ink [transition:border-color_.3s_ease,background_.3s_ease,color_.3s_ease] hover:border-ink hover:bg-ink hover:text-white"
