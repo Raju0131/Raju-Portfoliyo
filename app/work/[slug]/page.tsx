@@ -48,6 +48,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
+/* Section counters are two-digit ("01", "02", …) throughout the case studies. */
+const num = (n: number) => String(n).padStart(2, "0");
+
 const metaTile =
   "flex items-baseline justify-between gap-4 bg-card px-7 py-6";
 const metaLabel = "font-mono text-[10px] uppercase tracking-[.22em] opacity-55";
@@ -127,7 +130,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               <span className="text-accent">{p.title}</span>
             </div>
             <h1 className="m-0 mb-[26px] text-balance font-display text-[clamp(48px,9vw,120px)] font-extrabold leading-[.98] tracking-[-0.035em] text-ink">
-              {p.title} <span className="text-accent">✦</span>
+              {p.headline ?? p.title} <span className="text-accent">✦</span>
             </h1>
             <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
               <p className="m-0 max-w-[52ch] text-[clamp(16px,1.9vw,20px)] leading-[1.7] text-ink">
@@ -235,27 +238,58 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </div>
 
             <div className="flex flex-col gap-11">
-              <div data-reveal="1">
-                <span className="mb-4 flex items-baseline gap-3.5">
-                  <span className="font-mono text-[12px] tracking-[.2em] text-accent">01</span>
-                  <h2 className="m-0 font-display text-[clamp(24px,3vw,34px)] font-extrabold tracking-[-0.02em] text-ink">
-                    The challenge
-                  </h2>
-                </span>
-                <p className="m-0 text-base leading-[1.85]">{p.body1}</p>
-              </div>
-              <div data-reveal="1">
-                <span className="mb-4 flex items-baseline gap-3.5">
-                  <span className="font-mono text-[12px] tracking-[.2em] text-accent">02</span>
-                  <h2 className="m-0 font-display text-[clamp(24px,3vw,34px)] font-extrabold tracking-[-0.02em] text-ink">
-                    What I built
-                  </h2>
-                </span>
-                <p className="m-0 text-base leading-[1.85]">{p.body2}</p>
-              </div>
+              {p.sections ? (
+                p.sections.map((s, i) => (
+                  <div key={s.heading} data-reveal="1">
+                    <span className="mb-4 flex items-baseline gap-3.5">
+                      <span className="font-mono text-[12px] tracking-[.2em] text-accent">
+                        {num(i + 1)}
+                      </span>
+                      <h2 className="m-0 font-display text-[clamp(24px,3vw,34px)] font-extrabold tracking-[-0.02em] text-ink">
+                        {s.heading}
+                      </h2>
+                    </span>
+                    <div className="flex flex-col gap-[18px]">
+                      {s.body.map((para) => (
+                        <p key={para.text} className="m-0 text-base leading-[1.85]">
+                          {para.lead && (
+                            <>
+                              <strong className="font-semibold text-ink">{para.lead}</strong>{" "}
+                            </>
+                          )}
+                          {para.text}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <>
+                  <div data-reveal="1">
+                    <span className="mb-4 flex items-baseline gap-3.5">
+                      <span className="font-mono text-[12px] tracking-[.2em] text-accent">01</span>
+                      <h2 className="m-0 font-display text-[clamp(24px,3vw,34px)] font-extrabold tracking-[-0.02em] text-ink">
+                        The challenge
+                      </h2>
+                    </span>
+                    <p className="m-0 text-base leading-[1.85]">{p.body1}</p>
+                  </div>
+                  <div data-reveal="1">
+                    <span className="mb-4 flex items-baseline gap-3.5">
+                      <span className="font-mono text-[12px] tracking-[.2em] text-accent">02</span>
+                      <h2 className="m-0 font-display text-[clamp(24px,3vw,34px)] font-extrabold tracking-[-0.02em] text-ink">
+                        What I built
+                      </h2>
+                    </span>
+                    <p className="m-0 text-base leading-[1.85]">{p.body2}</p>
+                  </div>
+                </>
+              )}
               <div data-reveal="1">
                 <span className="mb-2 flex items-baseline gap-3.5">
-                  <span className="font-mono text-[12px] tracking-[.2em] text-accent">03</span>
+                  <span className="font-mono text-[12px] tracking-[.2em] text-accent">
+                    {num((p.sections?.length ?? 2) + 1)}
+                  </span>
                   <h2 className="m-0 font-display text-[clamp(24px,3vw,34px)] font-extrabold tracking-[-0.02em] text-ink">
                     Highlights
                   </h2>

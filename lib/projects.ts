@@ -1,5 +1,12 @@
 export type ProjectFeature = { t: string; d: string };
 
+/* A paragraph inside a long-form section. `lead` is the opening sentence, set
+   in ink like the emphasised runs on the homepage, so an enumerated point stays
+   scannable without becoming a heading of its own. */
+export type CaseParagraph = { lead?: string; text: string };
+
+export type CaseSection = { heading: string; body: CaseParagraph[] };
+
 export type Project = {
   slug: string;
   title: string;
@@ -12,12 +19,20 @@ export type Project = {
   year: string;
   status: string;
   marquee: string;
+  /* Rendered as "01 The challenge" / "02 What I built" — unless `sections` is
+     set, which supersedes both. */
   body1: string;
   body2: string;
   features: ProjectFeature[];
   live: string | null;
   next: string;
   nextTitle: string;
+  /* Long-form headline for the <h1> only. `title` stays short because it also
+     feeds the breadcrumb, the OG card, the next-project card and <title>. */
+  headline?: string;
+  /* Opt-in replacement for body1/body2 when a case study needs more than two
+     prose sections. Numbering and the Highlights index follow automatically. */
+  sections?: CaseSection[];
   heroImg?: string;
   img2?: string;
   img3?: string;
@@ -122,10 +137,11 @@ export const projects: Record<string, Project> = {
     tags: ["3D", "WebGL"],
     tint: "#e7e4f9",
     index: "01",
+    headline: "Sneaker Lab — Real-Time 3D Product Configurator",
     intro:
-      "A real-time 3D sneaker configurator — pick your colourway and material, watch it recolour live, and export the result. Built to run smoothly right in the browser.",
-    role: "Developer",
-    stack: "Next.js · R3F · Zustand",
+      "A product configurator that runs entirely in the browser. The interaction was the easy part. The engineering that mattered was the weight.",
+    role: "Solo developer — 3D, front end and asset pipeline",
+    stack: "Three.js · React Three Fiber · Next.js · TypeScript · GLSL · Zustand",
     year: "2026",
     status: "Live",
     marquee: "Sneaker Lab ✦ react-three-fiber ✦ Real-time colour ✦ WebGL ✦ ",
@@ -133,6 +149,61 @@ export const projects: Record<string, Project> = {
       "The source model came as baked-texture meshes with no separable parts, so standard per-material tinting was impossible — recolouring one panel meant recolouring the whole shoe, stitching and all.",
     body2:
       "I built a luminance-preserving tint pipeline that recolours the shoe while keeping the fabric weave and stitching intact, then compressed the model from 16.7MB down to 2.4MB with Draco and mesh simplification so it loads fast, even on mobile.",
+    sections: [
+      {
+        heading: "What it does",
+        body: [
+          {
+            text: "Orbit the sneaker, switch between six colourways and three materials, export a render, and watch priced options update the cart total as you go. Everything is client side: no page reloads, no plugin, no server round trip between choices.",
+          },
+        ],
+      },
+      {
+        heading: "The weight problem",
+        body: [
+          { text: "The source model was 16.7 MB." },
+          {
+            text: "On a mid-range Android on mobile data, that is not a slow experience. It is an abandoned one — the visitor leaves before the first frame renders.",
+          },
+          { text: "I brought it to 2.4 MB. An 86% reduction. Three things got it there:" },
+          {
+            lead: "Measure before touching anything.",
+            text: "I ran gltf-transform inspect first to see the split between geometry and textures. On most models the textures are the problem and the geometry is not, and Draco only compresses geometry — so compressing the wrong half and declaring victory is the most common mistake in this work.",
+          },
+          {
+            lead: "Re-author the textures rather than re-compressing them.",
+            text: "A 2048px roughness map doing the work of a 512px one is pure waste. Each map got looked at for what it was actually describing before deciding what resolution it needed.",
+          },
+          {
+            lead: "Treat quantisation bits as a dial, not a switch.",
+            text: "Draco's defaults are conservative. Positions usually tolerate fewer bits than expected and normals almost always do. I pushed each until banding appeared, then stepped back one.",
+          },
+          { text: "It holds 60fps on a mid-range Android, not only on a laptop." },
+        ],
+      },
+      {
+        heading: "The colour problem",
+        body: [
+          {
+            text: "Multiplying a tint over a baked texture is the fastest way to make an expensive model look cheap. The weave flattens, and the baked shadows go muddy. A red colourway stops looking like the same shoe in red and starts looking like a red silhouette.",
+          },
+          {
+            text: "So the tint pass does not touch colour as a single value. It separates luminance from chroma and replaces only the chroma, leaving luminance alone — which is where the weave, the stitching and the baked ambient occlusion actually live. The change is then masked by each texel's own saturation, so parts that were never coloured stay that way: white midsoles stay white, metal eyelets stay metal.",
+          },
+          {
+            text: "One model, any colourway, at runtime, with the material detail intact. No second texture set, and nothing extra to download.",
+          },
+        ],
+      },
+      {
+        heading: "Why it matters commercially",
+        body: [
+          {
+            text: "A configurator that will not load on a phone is a showreel, not a product. The people who abandon it are the ones who were about to buy. That is why the 2.4 MB number is the one I lead with rather than the shader work.",
+          },
+        ],
+      },
+    ],
     features: [
       { t: "Real-time colour switching", d: "Swap colourways instantly — the tint pipeline recolours the shoe live, with no reload." },
       { t: "Material presets with live pricing", d: "Leather, suede and canvas presets that update the price the moment you pick one." },
