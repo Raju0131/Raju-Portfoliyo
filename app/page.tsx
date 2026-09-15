@@ -457,6 +457,7 @@ export default function Home() {
               </span>
               <div className="flex flex-col">
                 {[
+                  ["Real-Time 3D & WebGL", "Three.js · R3F"],
                   ["Full-Stack Web Apps", "Next.js · Node"],
                   ["Frontend Engineering", "React · TS"],
                   ["UI / UX & Motion", "GSAP · Lenis"],
@@ -479,8 +480,8 @@ export default function Home() {
                   Currently
                 </span>
                 <p className="m-0 text-[15px] leading-[1.75]">
-                  Building faster with AI-assisted workflows — exploring 3D on the web and everything
-                  that makes an interface feel alive.
+                  Building real-time 3D for the browser — product configurators that load on a
+                  mid-range phone, not just a laptop.
                 </p>
               </div>
             </div>
