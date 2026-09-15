@@ -8,6 +8,7 @@ const MENU_ITEMS = [
   { num: "02", label: "About", href: "#about", delay: ".12s" },
   { num: "03", label: "Journey", href: "#experience", delay: ".19s" },
   { num: "04", label: "Contact", href: "#contact", delay: ".26s" },
+  { num: "05", label: "Services", href: "/services", delay: ".33s" },
 ];
 
 export default function HomeHeader() {

@@ -25,12 +25,20 @@ export default function WorkPage() {
         <Link href="/" className="font-hand text-[22px] leading-none tracking-[.04em] text-ink">
           Raju
         </Link>
-        <Link
-          href="/"
-          className="inline-block rounded-full border-[1.5px] border-ink px-[18px] py-2 text-[13.5px] font-semibold text-ink [transition:background_.3s_ease,color_.3s_ease] hover:bg-ink hover:text-white"
-        >
-          <span className="whitespace-nowrap">← Back home</span>
-        </Link>
+        <div className="flex items-center gap-3.5">
+          <Link
+            href="/services"
+            className="inline-block rounded-full border-[1.5px] border-line px-[18px] py-2 text-[13.5px] font-semibold text-ink [transition:border-color_.3s_ease] hover:border-ink"
+          >
+            <span className="whitespace-nowrap">Services</span>
+          </Link>
+          <Link
+            href="/"
+            className="inline-block rounded-full border-[1.5px] border-ink px-[18px] py-2 text-[13.5px] font-semibold text-ink [transition:background_.3s_ease,color_.3s_ease] hover:bg-ink hover:text-white"
+          >
+            <span className="whitespace-nowrap">← Back home</span>
+          </Link>
+        </div>
       </header>
 
       <main className="mx-auto box-border max-w-[1200px] px-[clamp(16px,5vw,64px)] pb-20 pt-[140px]">

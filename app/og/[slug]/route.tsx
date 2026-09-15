@@ -10,13 +10,32 @@ const homeCard = {
   tags: ["Next.js", "TypeScript", "PostgreSQL"],
   tint: "#e7e4f9",
   title: "Rifat Sarker Raju",
+  label: "Portfolio",
+};
+
+const servicesCard = {
+  index: "00",
+  intro:
+    "Real-time 3D product configurators and the Next.js stores they live in. Fixed prices, from $145.",
+  tags: ["Three.js", "Next.js", "PostgreSQL"],
+  tint: "#e7e4f9",
+  title: "Services & Pricing",
+  label: "Services",
+};
+
+/* Pages that aren't case studies get their card from here instead of `projects`,
+   and print their own label where a project prints "01 / 04". */
+const standaloneCards: Record<string, typeof homeCard> = {
+  home: homeCard,
+  services: servicesCard,
 };
 
 export async function GET(
   _request: Request,
   { params }: { params: { slug: string } },
 ) {
-  const project = params.slug === "home" ? homeCard : projects[params.slug];
+  const standalone = standaloneCards[params.slug];
+  const project = standalone ?? projects[params.slug];
 
   if (!project) {
     return new Response("Project not found", { status: 404 });
@@ -59,7 +78,7 @@ export async function GET(
           >
             <div style={{ display: "flex" }}>Raju / Selected work</div>
             <div style={{ color: "#655cf6", display: "flex" }}>
-              {params.slug === "home" ? "Portfolio" : `${project.index} / 04`}
+              {standalone ? standalone.label : `${project.index} / 04`}
             </div>
           </div>
 
