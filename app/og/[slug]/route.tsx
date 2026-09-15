@@ -11,6 +11,7 @@ const homeCard = {
   tint: "#e7e4f9",
   title: "Rifat Sarker Raju",
   label: "Portfolio",
+  eyebrow: "Raju / Selected work",
 };
 
 const servicesCard = {
@@ -21,6 +22,8 @@ const servicesCard = {
   tint: "#e7e4f9",
   title: "Services & Pricing",
   label: "Services",
+  /* Not a work sample — an offer. The other cards keep "Selected work". */
+  eyebrow: "Raju / Available for work",
 };
 
 /* Pages that aren't case studies get their card from here instead of `projects`,
@@ -76,7 +79,9 @@ export async function GET(
               textTransform: "uppercase",
             }}
           >
-            <div style={{ display: "flex" }}>Raju / Selected work</div>
+            <div style={{ display: "flex" }}>
+              {standalone?.eyebrow ?? "Raju / Selected work"}
+            </div>
             <div style={{ color: "#655cf6", display: "flex" }}>
               {standalone ? standalone.label : `${project.index} / 04`}
             </div>
