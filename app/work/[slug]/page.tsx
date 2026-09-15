@@ -111,12 +111,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             {p.index} / 04
           </span>
           <Link
-            href="/services"
-            className="inline-block rounded-full border-[1.5px] border-line px-[18px] py-2 text-[13.5px] font-semibold text-ink [transition:border-color_.3s_ease] hover:border-ink"
-          >
-            <span className="whitespace-nowrap">Services</span>
-          </Link>
-          <Link
             href="/work"
             className="inline-block rounded-full border-[1.5px] border-ink px-[18px] py-2 text-[13.5px] font-semibold text-ink [transition:background_.3s_ease,color_.3s_ease] hover:bg-ink hover:text-white"
           >
