@@ -7,6 +7,12 @@ export type CaseParagraph = { lead?: string; text: string };
 
 export type CaseSection = { heading: string; body: CaseParagraph[] };
 
+/* One run of the third-party credit note. `href` turns the run into a link, so
+   the sentence keeps its exact wording in the data instead of in the markup.
+   `nowrap` holds a run that reads as a single token — a licence name — together
+   when the note wraps on a narrow screen. */
+export type CreditRun = { text: string; href?: string; nowrap?: boolean };
+
 export type Project = {
   slug: string;
   title: string;
@@ -41,6 +47,9 @@ export type Project = {
   heroCaption?: string;
   img2Caption?: string;
   img3Caption?: string;
+  /* Attribution for third-party assets, set as a note at the foot of the
+     article — only the projects that build on someone else's work carry one. */
+  credit?: CreditRun[];
 };
 
 export const projects: Record<string, Project> = {
@@ -223,6 +232,23 @@ export const projects: Record<string, Project> = {
       "Real-time colour switching: every swatch recolours the shoe live, while the fabric weave and stitching stay intact.",
     img3Caption:
       "Mobile-first — the full configurator works on touch, with orbit controls that never hijack the page scroll.",
+    credit: [
+      {
+        text:
+          'The sneaker model is "Sneakers - Game Ready - Textured (Mockup)" by ',
+      },
+      { text: "kane_sk06", href: "https://sketchfab.com/kanesk06" },
+      { text: ", used under " },
+      {
+        text: "CC BY 4.0",
+        href: "https://creativecommons.org/licenses/by/4.0/",
+        nowrap: true,
+      },
+      {
+        text:
+          " and modified. The compression, the colour pass and the front end are mine.",
+      },
+    ],
   },
 };
 

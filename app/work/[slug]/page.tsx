@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Fragment } from "react";
 import RevealFx from "@/components/RevealFx";
 import ScrollProgress from "@/components/ScrollProgress";
 import { imageDims, projects, projectSlugs } from "@/lib/projects";
@@ -404,6 +405,31 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 )}
               </div>
             </div>
+          )}
+
+          {p.credit && (
+            <p
+              data-reveal="1"
+              className="mt-12 max-w-[72ch] text-[13px] leading-[1.65] text-muted"
+            >
+              {p.credit.map((run) =>
+                run.href ? (
+                  <a
+                    key={run.text}
+                    href={run.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`underline underline-offset-2 hover:text-ink${
+                      run.nowrap ? " whitespace-nowrap" : ""
+                    }`}
+                  >
+                    {run.text}
+                  </a>
+                ) : (
+                  <Fragment key={run.text}>{run.text}</Fragment>
+                )
+              )}
+            </p>
           )}
 
           <div
