@@ -3,12 +3,12 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const SOURCES = [
-  "/assets/amar-dehokhan.mp3",
-  "/assets/amar-dehokhan.ogg",
-  "/assets/amar-dehokhan.m4a",
-  "/assets/amar-dehokhan.wav",
-];
+/* Fallback chain for the About card's track. Only the mp3 has ever been in
+   public/assets/, and every current browser plays it — the three other
+   formats were listed without the files, so a failing mp3 just fell through
+   three 404s to the same "add audio file" state. Add a format here only
+   together with the file itself. */
+const SOURCES = ["/assets/amar-dehokhan.mp3"];
 
 export default function AboutPhotoCard() {
   const [playing, setPlaying] = useState(false);
@@ -154,6 +154,11 @@ export default function AboutPhotoCard() {
       <div className="mt-5 flex items-center justify-center gap-[9px] font-mono text-[10.5px] uppercase tracking-[.16em] opacity-70">
         <span className="text-[13px]">♪</span>
         {songLabel} — <span className="text-ink">Amar Dehokhan</span>
+      </div>
+      {/* The artist credit sits on its own line: at 10.5px with this tracking
+          the two together overrun the card on a narrow phone. */}
+      <div className="mt-1.5 text-center font-mono text-[9.5px] uppercase tracking-[.16em] text-muted opacity-70">
+        by Odd Signature
       </div>
     </div>
   );

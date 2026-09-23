@@ -79,7 +79,7 @@ The loader cycles through five greetings every 280 ms — `Hello`, `আসসা
 - The play button is a small album-art disc that spins only while audio plays, by toggling `animation-play-state`. Animated equaliser bars replace the play icon during playback.
 - The `<audio>` element is created on the first click with `preload="none"`, and it switches to `preload="auto"` only when playback is requested. A comment in the component explains why: creating the element on mount makes the browser fetch the whole track before anything has painted, which starves the hero image on a slow connection.
 - The track loops. The playback position is saved to `localStorage`, so playback resumes where the visitor left off on their next visit.
-- On a load error, the player moves to the next entry in its `SOURCES` list. `SOURCES` names four formats (`.mp3`, `.ogg`, `.m4a`, `.wav`), but only `amar-dehokhan.mp3` is in `public/assets/`, so there is nothing to fall back to today.
+- On a load error, the player moves to the next entry in its `SOURCES` list. The list holds one entry, `amar-dehokhan.mp3`, which every current browser plays. Add another format there only together with the file itself, or the chain falls through a 404.
 - Once the list runs out, the status line under the disc reads `Add audio file to play` instead of `Tap to play`. The caption printed on the card itself, `Music + code = me`, is fixed and never changes.
 
 ### Fluid layout, almost no breakpoints
@@ -231,11 +231,13 @@ The repo has no `LICENSE` file, and three of the things it ships came from somew
 
 | Asset | Source | Status |
 | --- | --- | --- |
-| `public/assets/amar-dehokhan.mp3`, plus `album-art.jpg` shown on the spinning disc | "Amar Dehokhan" by Odd Signature | Copyrighted commercial music, and artwork that goes with it. Rights to use either on a public site have not been confirmed. |
+| `public/assets/amar-dehokhan.mp3`, plus `album-art.jpg` shown on the spinning disc | "Amar Dehokhan" by Odd Signature | Copyrighted commercial music, and the artwork that goes with it. The artist is credited under the About card, but the rights to use either on a public site have not been confirmed. |
 | `app/fonts/boldmatte.ttf` | Boldmatte, the face behind the "Raju" wordmark | The web-embedding licence has not been verified. |
 | The sneaker model in the Sneaker Lab screenshots and live demo | "Sneakers - Game Ready - Textured (Mockup)" by [kane_sk06](https://sketchfab.com/kanesk06) on Sketchfab | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), modified. Attribution is required, and is printed at the foot of `/work/3d` from the `credit` field in `lib/projects.ts`. |
 
 The compression, the colour pass and the front end of Sneaker Lab are original work; the mesh and its textures are not.
+
+**A credit is not a licence.** Only the third row is settled by crediting: CC BY 4.0 asks for attribution, the attribution is on the page, and that use is covered. The music is a different question. Naming Odd Signature under the About card is courtesy, not permission — a commercial track still needs the rights holder's say-so before it is streamed from a public site, and the same goes for the artwork. The font is the same again: a credit would not stand in for an embedding licence.
 
 The site is already live, so the first two rows are worth settling rather than leaving open. A `LICENSE` file would also fix how the code itself may be reused — the assets above would need to be excluded from it.
 
