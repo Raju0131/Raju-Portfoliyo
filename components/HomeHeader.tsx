@@ -34,7 +34,10 @@ export default function HomeHeader() {
         </a>
         <div className="flex items-center gap-5">
           <span className="whitespace-nowrap font-mono text-[11px] tracking-[.14em] opacity-65">
-            <Clock /> — DHAKA
+            <Clock />
+            {/* Below 420px the city name pushes the Menu button off the screen,
+                so phones show the time alone. */}
+            <span className="max-[420px]:hidden"> — RAJSHAHI</span>
           </span>
           <a
             href="/assets/rajus-cv.pdf"

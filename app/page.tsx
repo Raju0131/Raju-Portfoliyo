@@ -187,13 +187,16 @@ export default function Home() {
             <SectionHeading num="01">
               Selected work <span className="text-accent">✦</span>
             </SectionHeading>
-            <span className="font-mono text-[12px] tracking-[.18em] opacity-60">(03) — 2025 · 2026</span>
+            <span className="font-mono text-[12px] tracking-[.18em] opacity-60">(04) — 2024 · 2026</span>
           </div>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[22px]">
+          {/* The small cards wrap on a 300px basis rather than sitting in a grid:
+              when a row can hold only two, the third grows across the next row
+              instead of leaving half of it empty. */}
+          <div className="flex flex-wrap gap-[22px]">
             <Link
               href="/work/3d"
               data-reveal="1"
-              className="col-span-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] items-center gap-[26px] rounded-[26px] bg-lav p-[clamp(24px,3vw,40px)] [transition:transform_.4s_cubic-bezier(.25,.1,.25,1),box-shadow_.4s_ease] hover:-translate-y-1.5 hover:shadow-[0_26px_60px_rgba(52,55,92,.16)]"
+              className="grid w-full grid-cols-[repeat(auto-fit,minmax(280px,1fr))] items-center gap-[26px] rounded-[26px] bg-lav p-[clamp(24px,3vw,40px)] [transition:transform_.4s_cubic-bezier(.25,.1,.25,1),box-shadow_.4s_ease] hover:-translate-y-1.5 hover:shadow-[0_26px_60px_rgba(52,55,92,.16)]"
             >
               <span className="flex flex-col items-start gap-4">
                 <span className="flex flex-wrap gap-2">
@@ -232,7 +235,7 @@ export default function Home() {
             <Link
               href="/work/cinenest"
               data-reveal="1"
-              className="flex flex-col gap-[22px] rounded-[26px] bg-mint p-[clamp(24px,3vw,36px)] [transition:transform_.4s_cubic-bezier(.25,.1,.25,1),box-shadow_.4s_ease] hover:-translate-y-1.5 hover:shadow-[0_26px_60px_rgba(52,55,92,.14)]"
+              className="flex grow basis-[300px] flex-col gap-[22px] rounded-[26px] bg-mint p-[clamp(24px,3vw,36px)] [transition:transform_.4s_cubic-bezier(.25,.1,.25,1),box-shadow_.4s_ease] hover:-translate-y-1.5 hover:shadow-[0_26px_60px_rgba(52,55,92,.14)]"
             >
               <span className="flex flex-wrap items-center justify-between gap-3">
                 <span className="flex flex-wrap gap-2">
@@ -249,7 +252,7 @@ export default function Home() {
                   alt="Cinenest homepage"
                   width={1936}
                   height={941}
-                  sizes="(max-width: 768px) 92vw, (max-width: 1300px) 45vw, 600px"
+                  sizes="(max-width: 691px) 92vw, (max-width: 1048px) 45vw, 320px"
                   quality={85}
                   className="block h-full w-full object-cover object-top"
                 />
@@ -266,7 +269,7 @@ export default function Home() {
             <Link
               href="/work/branding"
               data-reveal="1"
-              className="flex flex-col gap-[22px] rounded-[26px] bg-peach p-[clamp(24px,3vw,36px)] [transition:transform_.4s_cubic-bezier(.25,.1,.25,1),box-shadow_.4s_ease] hover:-translate-y-1.5 hover:shadow-[0_26px_60px_rgba(52,55,92,.14)]"
+              className="flex grow basis-[300px] flex-col gap-[22px] rounded-[26px] bg-peach p-[clamp(24px,3vw,36px)] [transition:transform_.4s_cubic-bezier(.25,.1,.25,1),box-shadow_.4s_ease] hover:-translate-y-1.5 hover:shadow-[0_26px_60px_rgba(52,55,92,.14)]"
             >
               <span className="flex flex-wrap items-center justify-between gap-3">
                 <span className="flex flex-wrap gap-2">
@@ -283,7 +286,7 @@ export default function Home() {
                   alt="Raju portfolio homepage"
                   width={1908}
                   height={929}
-                  sizes="(max-width: 768px) 92vw, (max-width: 1300px) 45vw, 600px"
+                  sizes="(max-width: 691px) 92vw, (max-width: 1048px) 45vw, 320px"
                   quality={85}
                   className="block h-full w-full object-cover object-top"
                 />
@@ -294,6 +297,40 @@ export default function Home() {
                 </span>
                 <span className="text-[14.5px] leading-[1.65]">
                   Personal brand &amp; this portfolio — motion and micro-interactions from scratch.
+                </span>
+              </span>
+            </Link>
+            <Link
+              href="/work/premium-hatbazar"
+              data-reveal="1"
+              className="flex grow basis-[300px] flex-col gap-[22px] rounded-[26px] bg-lav p-[clamp(24px,3vw,36px)] [transition:transform_.4s_cubic-bezier(.25,.1,.25,1),box-shadow_.4s_ease] hover:-translate-y-1.5 hover:shadow-[0_26px_60px_rgba(52,55,92,.14)]"
+            >
+              <span className="flex flex-wrap items-center justify-between gap-3">
+                <span className="flex flex-wrap gap-2">
+                  <span className={workChip}>Full-stack</span>
+                  <span className={workChip}>2026</span>
+                </span>
+                <span className="inline-flex h-[42px] w-[42px] items-center justify-center rounded-full bg-ink text-[17px] text-white [transition:background_.3s_ease,transform_.3s_ease] hover:rotate-45 hover:bg-accent">
+                  ↗
+                </span>
+              </span>
+              <span className="block aspect-[16/11] overflow-hidden rounded-2xl bg-white/50">
+                <Image
+                  src="/assets/premiumhatbazar-home.webp"
+                  alt="Premium Hatbazar storefront"
+                  width={1440}
+                  height={900}
+                  sizes="(max-width: 1048px) 92vw, 320px"
+                  quality={85}
+                  className="block h-full w-full object-cover object-top"
+                />
+              </span>
+              <span className="flex flex-col gap-2">
+                <span className="font-display text-[clamp(26px,2.8vw,36px)] font-extrabold leading-none tracking-[-0.02em] text-ink">
+                  Premium Hatbazar
+                </span>
+                <span className="text-[14.5px] leading-[1.65]">
+                  Bengali-first demo store — mobile-wallet checkout, order tracking and an admin panel.
                 </span>
               </span>
             </Link>

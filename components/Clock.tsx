@@ -8,6 +8,7 @@ export default function Clock() {
     const tick = () =>
       setClock(
         new Intl.DateTimeFormat("en-GB", {
+          // The IANA zone for the whole of Bangladesh, so it is Rajshahi's time too.
           timeZone: "Asia/Dhaka",
           hour: "2-digit",
           minute: "2-digit",

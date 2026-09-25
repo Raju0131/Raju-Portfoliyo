@@ -8,7 +8,7 @@ The portfolio of Md. Raju Ahmed, a full-stack web developer in Rajshahi, Banglad
 
 | Route | What it is |
 | --- | --- |
-| [`/`](https://rifatsarkerraju.com) | Single-scroll home page: intro loader, hero, marquee ribbon, three selected projects, an About section with a music player, a timeline with a CV download, and a contact footer with a live Dhaka clock |
+| [`/`](https://rifatsarkerraju.com) | Single-scroll home page: intro loader, hero, marquee ribbon, four selected projects, an About section with a music player, a timeline with a CV download, and a contact footer with a live clock on Bangladesh time |
 | [`/work`](https://rifatsarkerraju.com/work) | Archive of all four projects |
 | [`/work/3d`](https://rifatsarkerraju.com/work/3d) | **Sneaker Lab**: case study of a real-time 3D sneaker configurator ([live demo](https://3d-bay-ten.vercel.app)) |
 | [`/work/cinenest`](https://rifatsarkerraju.com/work/cinenest) | **Cinenest**: web app case study |
@@ -71,7 +71,7 @@ The loader cycles through five greetings every 280 ms — `Hello`, `আসসা
 ### Menu, clock and scroll progress
 
 - **Menu** (`HomeHeader`): a full-screen overlay whose links stagger in. It closes on Escape or when a link is chosen.
-- **Clock** (`Clock`): Dhaka time from `Intl.DateTimeFormat` with `timeZone: "Asia/Dhaka"`, refreshed every 30 s. It renders `--:--` on the server and fills in after mount, so the server HTML and the first client render match.
+- **Clock** (`Clock`): Bangladesh time from `Intl.DateTimeFormat` with `timeZone: "Asia/Dhaka"`, the IANA zone for the whole country (the home header labels it Rajshahi), refreshed every 30 s. It renders `--:--` on the server and fills in after mount, so the server HTML and the first client render match.
 - **Scroll progress** (`ScrollProgress`): a 3 px accent bar driven by a passive scroll listener. It appears on the home page, the services page and the case studies.
 
 ### Music player on the About card (`AboutPhotoCard`)
@@ -84,7 +84,7 @@ The loader cycles through five greetings every 280 ms — `Hello`, `আসসা
 
 ### Fluid layout, almost no breakpoints
 
-The styles contain one width-based media query (`max-[420px]:hidden`, which hides a decorative counter in the case-study header). Everything else is fluid. Type and spacing are sized with `clamp()`, and grids use `repeat(auto-fit, minmax(…, 1fr))`, so columns reflow without breakpoints.
+The styles use one width-based media query, `max-[420px]:hidden`, in two places: it hides the decorative counter in the case-study header and the city name beside the home header's clock, where a phone-width row cannot hold them next to the links. Everything else is fluid. Type and spacing are sized with `clamp()`, and grids use `repeat(auto-fit, minmax(…, 1fr))`, so columns reflow without breakpoints. The home page's small project cards wrap on a 300 px flex basis instead, so when a row holds only two, the third stretches across the next row rather than leaving half of it empty.
 
 ### Accessibility and reduced motion
 
@@ -203,7 +203,7 @@ Each entry in `projects` is one case study, keyed by its URL slug. An entry hold
 A new slug gets its page, metadata and preview image automatically. Some parts are written by hand and need updating along with it:
 
 - the project rows on `/work` (`app/work/page.tsx`) and the Selected work cards on the home page (`app/page.tsx`)
-- the project counts: "(03)" on the home page, "(04)" and "All (04)" on `/work`, and "/ 04" in `app/work/[slug]/page.tsx` and `app/og/[slug]/route.tsx`. Each project's own number is its `index` field.
+- the project counts: "(04)" on the home page, "(04)" and "All (04)" on `/work`, and "/ 04" in `app/work/[slug]/page.tsx` and `app/og/[slug]/route.tsx`. Each project's own number is its `index` field.
 
 ### Everything else
 
