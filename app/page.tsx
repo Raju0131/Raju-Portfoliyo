@@ -410,11 +410,11 @@ export default function Home() {
                   <span className="absolute -left-[7px] top-[3px] h-3 w-3 rounded-full bg-accent" />
                   <span className="font-mono text-[11px] tracking-[.18em] opacity-60">2026</span>
                   <div className="mb-[7px] mt-[5px] font-display text-[clamp(18px,2vw,22px)] font-bold tracking-[-0.01em] text-ink">
-                    Full-Stack Developer · Tech House
+                    Full-Stack Developer · Premium Hatbazar
                   </div>
                   <p className="m-0 max-w-[46ch] text-sm leading-[1.7]">
-                    End-to-end e-commerce — auth, cart, payments, admin dashboard. Architected to
-                    scale.
+                    Bengali-first demo store — catalogue, mobile-wallet checkout, order tracking and
+                    an admin panel.
                   </p>
                 </li>
                 <li className="relative border-l-2 border-line pb-8 pl-[30px] transition-transform duration-300 hover:translate-x-1.5">

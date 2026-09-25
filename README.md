@@ -12,13 +12,13 @@ The portfolio of Md. Raju Ahmed, a full-stack web developer in Rajshahi, Banglad
 | [`/work`](https://rifatsarkerraju.com/work) | Archive of all four projects |
 | [`/work/3d`](https://rifatsarkerraju.com/work/3d) | **Sneaker Lab**: case study of a real-time 3D sneaker configurator ([live demo](https://3d-bay-ten.vercel.app)) |
 | [`/work/cinenest`](https://rifatsarkerraju.com/work/cinenest) | **Cinenest**: web app case study |
-| [`/work/techhouse`](https://rifatsarkerraju.com/work/techhouse) | **Tech House**: e-commerce case study |
+| [`/work/premium-hatbazar`](https://rifatsarkerraju.com/work/premium-hatbazar) | **Premium Hatbazar**: case study of a Bengali-first demo store for digital subscriptions ([live demo](https://premiumhatbazar.vercel.app)) |
 | [`/work/branding`](https://rifatsarkerraju.com/work/branding) | **Raju — Identity**: the personal brand and this site |
 | [`/services`](https://rifatsarkerraju.com/services) | Services with fixed starting prices, the working process and an FAQ |
 | `/og/[slug]` | Generated 1200×630 social preview images |
 | `/robots.txt` | Generated from `app/robots.ts` |
 
-`/service` and `/works` redirect permanently to `/services` and `/work` (`next.config.mjs`).
+`/service` and `/works` redirect permanently to `/services` and `/work`, and `/work/techhouse`, the e-commerce case study's address before the project took its name, redirects to `/work/premium-hatbazar` (`next.config.mjs`).
 
 ## Frontend engineering highlights
 
@@ -183,7 +183,7 @@ The repo carries no host configuration and no CI — there is no `vercel.json`, 
 Two things rule out a static export (`output: "export"`):
 
 - `/og/[slug]` is a dynamic route on the Edge runtime.
-- The `redirects()` in `next.config.mjs` are applied by the Next.js server, or by a host adapter that translates them. A plain static export would 404 on `/service` and `/works` again.
+- The `redirects()` in `next.config.mjs` are applied by the Next.js server, or by a host adapter that translates them. A plain static export would 404 on `/service`, `/works` and `/work/techhouse` again.
 
 Everything else is prerendered at build time, so the host only has to run the Next.js server.
 
@@ -195,9 +195,9 @@ Each entry in `projects` is one case study, keyed by its URL slug. An entry hold
 
 - `body1` and `body2` fill the default "The challenge" and "What I built" sections. Setting `sections` replaces both with any number of numbered sections, and the Highlights number adjusts to match.
 - `heroImg`, `img2` and `img3` are paths in `public/assets/`. In the default layout, a missing image shows a "screenshot coming soon" placeholder. Add the pixel size of each new screenshot to `imageDims`, or the image falls back to 1600×900.
-- `imagesNatural: true` shows screenshots at their own aspect ratio, with optional captions (`heroCaption`, `img2Caption`, `img3Caption`).
+- `imagesNatural: true` shows screenshots at their own aspect ratio, with optional captions (`heroCaption`, `img2Caption`, `img3Caption`) and alt text for the second screenshot (`img2Alt`). The third is framed as a mobile view.
 - `live` adds the "Visit live site" links. Set it to `null` to hide them.
-- `credit` prints an attribution note at the foot of the article. Runs with an `href` become links. It is what carries the Sketchfab attribution on `/work/3d` — see [Third-party assets](#third-party-assets).
+- `credit` prints an attribution note at the foot of the article. Runs with an `href` become links. It is what carries the Sketchfab attribution on `/work/3d` — see [Third-party assets](#third-party-assets) — and the note on the product names and logos in the `/work/premium-hatbazar` screenshots.
 - `next` and `nextTitle` set the "Next project" card, which links the case studies in a loop.
 
 A new slug gets its page, metadata and preview image automatically. Some parts are written by hand and need updating along with it:

@@ -153,15 +153,28 @@ export default function WorkPage() {
               <span className={rowArrow}>↗</span>
             </span>
           </Link>
-          <Link href="/work/techhouse" className={`${rowBase} border-b hover:bg-lav`}>
+          <Link href="/work/premium-hatbazar" className={`${rowBase} border-b hover:bg-lav`}>
             <span className="font-mono text-[12px] tracking-[.18em] text-accent">04</span>
-            <span className="flex h-[72px] w-[104px] shrink-0 items-center justify-center rounded-xl bg-lav font-hand text-[26px] text-ink">
-              Th
+            <span className="h-[72px] w-[104px] shrink-0 overflow-hidden rounded-xl bg-lav">
+              <Image
+                src="/assets/premiumhatbazar-home.webp"
+                alt=""
+                width={1440}
+                height={900}
+                sizes="104px"
+                quality={85}
+                className="block h-full w-full object-cover object-top"
+              />
             </span>
             <span className={rowText}>
-              <span className={rowTitle}>Tech House</span>
+              <span className="flex flex-wrap items-center gap-3">
+                <span className={rowTitle}>Premium Hatbazar</span>
+                <span className="whitespace-nowrap rounded-full bg-mint px-[13px] py-[5px] font-mono text-[10px] tracking-[.1em] text-ink">
+                  ● Live
+                </span>
+              </span>
               <span className="text-[14px]">
-                Full-stack e-commerce — Next.js · TypeScript · PostgreSQL
+                Bengali-first demo store — Next.js · Prisma · PostgreSQL
               </span>
             </span>
             <span className={rowRight}>

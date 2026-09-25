@@ -104,6 +104,19 @@ const SERVICES: Service[] = [
     title: "Full-stack web app",
     blurb:
       "Schema, API, interface and deployment from one person — so you are not hiring three and translating between them.",
+    blurbMore: (
+      <>
+        {" "}
+        Premium Hatbazar, a working demo store, is built this way end to end —{" "}
+        <Link
+          href="/work/premium-hatbazar"
+          className="font-semibold text-ink underline underline-offset-4"
+        >
+          see the case study
+        </Link>
+        .
+      </>
+    ),
     from: "$190",
     typical: "Most builds land at $520–$1,100",
     includes: [

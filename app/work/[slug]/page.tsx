@@ -331,7 +331,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   >
                     <Shot
                       src={p.img2}
-                      alt={`${p.title} screenshot — colour switching`}
+                      alt={p.img2Alt ?? `${p.title} screenshot 2`}
                       sizes="(max-width: 1200px) 92vw, 1072px"
                       className="block h-auto w-full"
                     />

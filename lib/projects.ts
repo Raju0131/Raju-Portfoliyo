@@ -47,38 +47,114 @@ export type Project = {
   heroCaption?: string;
   img2Caption?: string;
   img3Caption?: string;
-  /* Attribution for third-party assets, set as a note at the foot of the
-     article — only the projects that build on someone else's work carry one. */
+  /* The second screenshot shows a different view on every project, so its alt
+     text lives with the data rather than in the template. */
+  img2Alt?: string;
+  /* Attribution for third-party assets, or a note on third-party marks in the
+     screenshots, set at the foot of the article — only the projects that show
+     someone else's work carry one. */
   credit?: CreditRun[];
 };
 
 export const projects: Record<string, Project> = {
-  techhouse: {
-    slug: "techhouse",
-    title: "Tech House",
+  "premium-hatbazar": {
+    slug: "premium-hatbazar",
+    title: "Premium Hatbazar",
     tags: ["Full-stack", "E-commerce"],
     tint: "#e7e4f9",
     index: "04",
+    headline: "Premium Hatbazar — A Bengali-First Subscription Store",
     intro:
-      "A complete e-commerce platform built end-to-end — from database schema to checkout flow.",
-    role: "Full-stack Developer",
-    stack: "Next.js · TS · PostgreSQL",
+      "A demo store for premium digital subscriptions, built Bengali-first for Bangladesh: storefront, mobile-wallet checkout, order tracking and an admin panel.",
+    role: "Solo developer — design, front end, back end and admin",
+    stack: "Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Prisma 7 · PostgreSQL (Neon)",
     year: "2026",
-    status: "Shipped",
-    marquee: "Tech House ✦ E-commerce ✦ Next.js ✦ TypeScript ✦ PostgreSQL ✦ ",
+    status: "Live demo",
+    marquee:
+      "Premium Hatbazar ✦ Bengali-first e-commerce ✦ bKash · Nagad · Rocket ✦ Next.js 16 ✦ Prisma ✦ PostgreSQL ✦ ",
     body1:
-      "Tech House needed a fast, reliable storefront with a real admin backend — not a template. Payments, inventory and orders all had to work together without a single dropped state, and the team needed a dashboard they'd actually enjoy using daily.",
+      "Many shoppers in Bangladesh pay with bKash, Nagad or Rocket rather than a card, and read Bengali first. The store is built around both instead of bolting them on.",
     body2:
-      "I owned the whole build: data model, API layer, storefront UI and the admin dashboard. Server-rendered pages keep browsing instant; PostgreSQL keeps orders consistent; the checkout flow was tested against every edge case I could invent.",
-    features: [
-      { t: "Full auth & accounts", d: "Sign-up, sessions, protected routes and role-based admin access." },
-      { t: "Cart & payments", d: "Persistent cart, checkout flow and payment integration built for failure cases." },
-      { t: "Admin dashboard", d: "Orders, inventory and product management in one clean internal tool." },
-      { t: "Performance first", d: "Server rendering + smart caching — product pages load instantly." },
+      "A storefront, a Send Money checkout, an order-tracking page and a password-protected admin panel, in one Next.js codebase on Prisma and serverless PostgreSQL.",
+    sections: [
+      {
+        heading: "What it is",
+        body: [
+          {
+            text: "A demo store for premium digital subscriptions: AI tools, streaming, design, gaming and gift cards. A visitor picks a product and a 1, 3 or 12-month term, pays by bKash, Nagad or Rocket, and follows the order on a tracking page. Behind it, an admin panel verifies payments, moves orders along and manages the catalogue.",
+          },
+          {
+            text: "It is a working demo: every flow runs end to end, from the catalogue to marking an order delivered. The whole interface is in Bengali, prices included, in Bengali numerals.",
+          },
+        ],
+      },
+      {
+        heading: "A checkout without a card gateway",
+        body: [
+          {
+            text: "Many shoppers here pay from a mobile wallet, not a card, so the checkout is built around Send Money instead of a payment gateway.",
+          },
+          {
+            lead: "Pay first, then prove it.",
+            text: "The checkout shows the store's wallet number with a copy button. The customer sends the money, then enters the transaction ID, a WhatsApp number and an email for delivery.",
+          },
+          {
+            lead: "An order ID a person can read.",
+            text: "Each order gets a code such as PH-482193 — six random digits, retried on the rare collision — instead of a database ID.",
+          },
+          {
+            lead: "A status the customer can follow.",
+            text: "The tracking page mirrors the status the admin sets: order received, payment verified, delivered on WhatsApp. A cancelled order says so.",
+          },
+        ],
+      },
+      {
+        heading: "An admin that fails closed",
+        body: [
+          {
+            text: "The admin panel holds a sales dashboard, order management, a product catalogue with create, edit and delete, and the inbox for the chat widget.",
+          },
+          {
+            text: "It sits behind HTTP Basic Auth in proxy.ts, and every admin server action checks the login again, because a server action can be reached with a direct POST that never passes through the proxy. Without an admin password set, the panel stays locked for everyone, so a preview deployment that is missing the variable cannot expose orders.",
+          },
+        ],
+      },
+      {
+        heading: "Fast on a phone",
+        body: [
+          {
+            text: "Home and product pages are prerendered and served from the CDN, refreshed in the background every five minutes and straight after an admin edit. The cart lives in localStorage, so no page needs a request-time cookie and every storefront page can stay static.",
+          },
+          {
+            text: "One self-hosted Bengali and Latin font family, product images as content-hashed WebP at three widths — about 30–40 KB instead of a 1.4 MB source PNG — and a 4 KB stylesheet inlined into the HTML. Lighthouse puts performance at 100 on desktop and about 90 on mobile, and accessibility at 100.",
+          },
+        ],
+      },
     ],
-    live: null,
+    features: [
+      { t: "Bengali-first storefront", d: "Bengali interface and numerals, category filters, live search and 1, 3 or 12-month pricing." },
+      { t: "Mobile-wallet checkout", d: "bKash, Nagad and Rocket Send Money with a transaction ID, and an order ID to track." },
+      { t: "An admin that fails closed", d: "Orders, products and a chat inbox behind Basic Auth, re-checked in every server action." },
+      { t: "Prerendered and fast", d: "Static pages from the CDN, refreshed on every admin edit — Lighthouse 100 on desktop." },
+    ],
+    live: "https://premiumhatbazar.vercel.app",
     next: "3d",
     nextTitle: "Sneaker Lab",
+    heroImg: "/assets/premiumhatbazar-home.webp",
+    img2: "/assets/premiumhatbazar-admin.webp",
+    img3: "/assets/premiumhatbazar-mobile.jpg",
+    imagesNatural: true,
+    heroCaption:
+      "The Premium Hatbazar storefront — AI tools, streaming, design and gaming subscriptions, priced by term and written in Bengali.",
+    img2Caption:
+      "The admin's product catalogue. The panel also covers orders, a sales dashboard and the chat inbox; it sits behind a password, so the live demo doesn't show it.",
+    img2Alt: "Premium Hatbazar admin panel — product catalogue",
+    img3Caption: "The storefront on a phone — prerendered pages keep it quick on mobile data.",
+    credit: [
+      {
+        text: "Product names and logos in the screenshots belong to their owners. Premium Hatbazar is a demo store and is not affiliated with or endorsed by them.",
+      },
+    ],
   },
   cinenest: {
     slug: "cinenest",
@@ -134,8 +210,8 @@ export const projects: Record<string, Project> = {
       { t: "Fully hand-built", d: "No templates, no page builders — every pixel is intentional." },
     ],
     live: "https://rifatsarkerraju.com",
-    next: "techhouse",
-    nextTitle: "Tech House",
+    next: "premium-hatbazar",
+    nextTitle: "Premium Hatbazar",
     heroImg: "/assets/raju-home.png",
     img2: "/assets/raju-work.png",
     img3: "/assets/raju-project.png",
@@ -230,6 +306,7 @@ export const projects: Record<string, Project> = {
       "The Sneaker Lab configurator — six colourways, three materials and live pricing, all rendered in real time in the browser.",
     img2Caption:
       "Real-time colour switching: every swatch recolours the shoe live, while the fabric weave and stitching stay intact.",
+    img2Alt: "Sneaker Lab screenshot — colour switching",
     img3Caption:
       "Mobile-first — the full configurator works on touch, with orbit controls that never hijack the page scroll.",
     credit: [
@@ -266,4 +343,7 @@ export const imageDims: Record<string, { w: number; h: number }> = {
   "/assets/sneaker-navy.png": { w: 1920, h: 935 },
   "/assets/sneaker-green.png": { w: 1920, h: 935 },
   "/assets/sneaker-orange.png": { w: 470, h: 576 },
+  "/assets/premiumhatbazar-home.webp": { w: 1440, h: 900 },
+  "/assets/premiumhatbazar-admin.webp": { w: 1440, h: 900 },
+  "/assets/premiumhatbazar-mobile.jpg": { w: 1170, h: 1656 },
 };
